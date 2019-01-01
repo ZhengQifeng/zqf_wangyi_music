@@ -4,7 +4,7 @@ import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/_renderRoutes';
 
 
-let Router = require('dva/router').routerRedux.ConnectedRouter;
+let Router = DefaultRouter;
 
 let routes = [
   {
@@ -12,24 +12,22 @@ let routes = [
     "component": require('../../layouts/index.js').default,
     "routes": [
       {
-        "path": "/home",
-        "component": require('../../layouts/home').default,
-        "_title": "create",
-        "_title_default": "create"
+        "path": "/",
+        "exact": true,
+        "component": require('../index.js').default
       },
       {
-        "component": () => React.createElement(require('/Users/zhengqifeng/react/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
-        "_title": "create",
-        "_title_default": "create"
+        "path": "/home",
+        "exact": true,
+        "component": require('../home.js').default
+      },
+      {
+        "component": () => React.createElement(require('/Users/zhengqifeng/react/zqf_wangyi_music/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
       }
-    ],
-    "_title": "create",
-    "_title_default": "create"
+    ]
   },
   {
-    "component": () => React.createElement(require('/Users/zhengqifeng/react/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
-    "_title": "create",
-    "_title_default": "create"
+    "component": () => React.createElement(require('/Users/zhengqifeng/react/zqf_wangyi_music/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
   }
 ];
 window.g_plugins.applyForEach('patchRoutes', { initialValue: routes });
