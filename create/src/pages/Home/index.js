@@ -1,6 +1,7 @@
-import styles from './home.css';
+import React from 'react';
+import styles from './index.less';
 
-export default function() {
+export default function () {
   return (
     <div className={styles.normal}>
       <h1>Page home</h1>

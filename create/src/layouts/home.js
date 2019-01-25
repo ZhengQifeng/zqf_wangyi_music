@@ -1,10 +1,9 @@
-import Home from '../views/home/home';
+import React from 'react';
 
 export default function (props) {
 	return (
-		<>
-			<Home {...props}/>
+		<div>
 			{props.children}
-		</>
+		</div>
 	);
 }
