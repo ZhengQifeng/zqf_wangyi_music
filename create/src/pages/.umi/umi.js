@@ -35,7 +35,7 @@ Promise.all(moduleBeforeRendererPromises).then(() => {
   window.console && window.console.error(err);
 });
 
-require('../../global.css');
+require('../../global.less');
 
 // hot module replacement
 if (module.hot) {

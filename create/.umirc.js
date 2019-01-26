@@ -9,10 +9,28 @@ export default {
       dynamicImport: false,
       title: 'create',
       dll: false,
-      routes: {
-        exclude: [],
-      },
       hardSource: false,
     }],
   ],
+  routes: [
+    {
+      path: "/",
+      component: "../layouts/BasicLayout",
+      routes: [
+        {
+          path: "/my"
+        },
+        {
+          path: "/",
+          component: "../layouts/HomeLayout",
+          routes: [
+            {
+              path: "/",
+              component: "./Home"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

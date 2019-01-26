@@ -1,0 +1,50 @@
+@selectedBg: #9B0909;
+@selectedCl: #fff;
+
+.nav {
+  width: 100%;
+  min-width: 1100px;
+  background-color: #C20C0C;
+  :global {
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 204px;
+    }
+    .ant-menu-dark {
+      height: 29px;
+      line-height: 24px;
+      padding-bottom: 5px;
+      font-size: 12px;
+      background: #C20C0C;
+      border-bottom: none;
+      .ant-menu-item.ant-menu-item-selected {
+        background: #C20C0C;
+        .itemWord {
+          background-color: @selectedBg;
+        }
+      }
+      .navItem {
+        padding: 0 17px;
+        .itemWord {
+          display: inline-block;
+          height: 20px;
+          line-height: 20px;
+          padding: 0 14px;
+          border-radius: 10px;
+          color: @selectedCl;
+        }
+        &:hover {
+          .itemWord {
+            background-color: @selectedBg;
+            color: @selectedCl;
+          }
+        }
+      }
+    }
+  }
+  .blankBox {
+    width: 180px;
+  }
+}

@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-01 20:50:29 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-25 17:00:09
+ * @Last Modified time: 2019-01-26 11:17:36
  */
 import React, { Component } from 'react';
 import styles from './nav.less';
@@ -22,15 +22,14 @@ export default class NavMenu extends Component {
         <Menu
           mode='horizontal'
           theme='dark'
-          className={styles.nav}
           defaultSelectedKeys={[`/${this.history.location.pathname.split('/')[1]}`]}
           onClick={e => this.changeMenu(e)}
         >
           {Object.keys(navMenu).map(item =>
             <Menu.Item
-              className={styles['nav-item']}
+              className='navItem'
               key={item}
-            >{navMenu[item]}</Menu.Item>
+            ><span className='itemWord'>{navMenu[item]}</span></Menu.Item>
           )}
         </Menu>
       </div>

@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-01 20:50:35 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-25 17:00:40
+ * @Last Modified time: 2019-01-26 09:51:55
  */
 import React from 'react';
 import style from './nav.less';
@@ -15,7 +15,7 @@ export default function (props) {
       <Icon type='search' />
       <input
         type='text'
-        placeholder='请输入'
+        placeholder='音乐/视频/电台/用户'
         value={navSearch}
         onChange={changeSearch}
       />

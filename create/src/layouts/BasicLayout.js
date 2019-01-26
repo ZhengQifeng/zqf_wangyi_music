@@ -1,11 +1,20 @@
+/*
+ * @Author: zhengqifeng 
+ * @Date: 2019-01-26 09:21:09 
+ * @Last Modified by: zhengqifeng
+ * @Last Modified time: 2019-01-26 13:48:34
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'dva';
+
 import style from './BasicLayout.less';
 import { NavLogo, NavMenu, NavSearchInput } from '../components/nav/index';
+import Footer from './Footer';
 
 class BasicLayout extends Component {
   static navMenu = {
-    '/home': '发现音乐',
+    '/': '发现音乐',
     '/my': '我的音乐',
     '/friend': '朋友',
     '/store': '商城',
@@ -31,12 +40,18 @@ class BasicLayout extends Component {
       <>
         <div className={style.nav}>
           <div className='content'>
-            <NavLogo navLogo={navLogo} />
-            <NavMenu navMenu={navMenu} {...this.props} />
+            <div className={style.navLf}>
+              <NavLogo navLogo={navLogo} />
+              <NavMenu navMenu={navMenu} {...this.props} />
+            </div >
             <NavSearchInput navSearch={navSearch} changeSearch={this.changeSearch} />
           </div>
         </div>
-        {children}
+        <div className={style.bar}></div>
+        <main>
+          {children}
+        </main>
+        <Footer />
       </ >
     );
   }

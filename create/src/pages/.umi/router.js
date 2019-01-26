@@ -9,21 +9,36 @@ let Router = require('dva/router').routerRedux.ConnectedRouter;
 let routes = [
   {
     "path": "/",
-    "component": require('../../layouts/BasicLayout.js').default,
+    "component": require('../../layouts/BasicLayout').default,
     "routes": [
       {
-        "path": "/",
-        "component": require('../../layouts/home.js').default,
+        "path": "/my",
+        "exact": true,
         "_title": "create",
-        "_title_default": "create",
-        "routes": [{
-          "path": "/home",
-          "exact": true,
-          "component": require('../Home/index.js').default,
-        }]
+        "_title_default": "create"
       },
       {
-        "component": () => React.createElement(require('D:/projectMy/zqf_wangyi_music/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+        "path": "/",
+        "component": require('../../layouts/HomeLayout').default,
+        "routes": [
+          {
+            "path": "/",
+            "component": require('../Home').default,
+            "exact": true,
+            "_title": "create",
+            "_title_default": "create"
+          },
+          {
+            "component": () => React.createElement(require('D:/projectMy/zqf_wangyi_music/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true }),
+            "_title": "create",
+            "_title_default": "create"
+          }
+        ],
+        "_title": "create",
+        "_title_default": "create"
+      },
+      {
+        "component": () => React.createElement(require('D:/projectMy/zqf_wangyi_music/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true }),
         "_title": "create",
         "_title_default": "create"
       }
@@ -32,7 +47,7 @@ let routes = [
     "_title_default": "create"
   },
   {
-    "component": () => React.createElement(require('D:/projectMy/zqf_wangyi_music/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+    "component": () => React.createElement(require('D:/projectMy/zqf_wangyi_music/create/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true }),
     "_title": "create",
     "_title_default": "create"
   }
