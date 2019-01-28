@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-26 09:21:09 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-26 13:48:34
+ * @Last Modified time: 2019-01-28 15:34:53
  */
 
 import React, { Component } from 'react';
@@ -23,7 +23,7 @@ class BasicLayout extends Component {
   }
 
   static navLogo = {
-    title: '趣味音乐库'
+    title: 'T-Music'
   }
 
   changeSearch = event => {

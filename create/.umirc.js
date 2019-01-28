@@ -1,3 +1,4 @@
+import { resolve } from "path";
 
 // ref: https://umijs.org/config/
 export default {
@@ -12,6 +13,15 @@ export default {
       hardSource: false,
     }],
   ],
+  alias: {
+    '@': resolve(__dirname, './src')
+  },
+  proxy: {
+    '/music': {
+      'target': 'http://47.112.22.46',
+      'changeOrigin': true
+    }
+  },
   routes: [
     {
       path: "/",
