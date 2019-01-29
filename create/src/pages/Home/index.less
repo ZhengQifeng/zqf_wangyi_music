@@ -20,19 +20,88 @@
 .sortWrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   padding-top: 20px;
 }
 
-.newDisc {
-  :global {
-    .musicCarPic {
-      width: 118px;
-      height: 100px;
-      background: url('../../assets/image/coverall.png') no-repeat;
-      background-position: 0 -570px;
-      img {
-        width: 100px;
-        height: 100px;
+.newDiscBox {
+  margin: 20px 0 37px;
+  border: 1px solid #d3d3d3;
+  .newDisc {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    background: #f5f5f5;
+    border: 1px solid #fff;
+    :global {
+      .anticon {
+        display: block;
+        cursor: pointer;
+      }
+      .musicCar {
+        width: 118px;
+        .musicCarPic {
+          height: 100px;
+          background: url('../../assets/image/coverall.png') no-repeat;
+          background-position: 0 -570px;
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+        .musicCarName {
+          display: inline-block;
+          width: 118px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+.hotMusic {
+  display: flex;
+  margin: 20px 0;
+  background-color: #f5f5f5;
+  border: 1px solid #d3d3d3;
+  .hotMusicLi {
+    width: 100%;
+    &:not(:last-child) {
+      border-right: 1px solid #d3d3d3;
+    }
+    .hotMuiscPic {
+      width: 80px;
+      height: 80px;
+    }
+    .hotMusicLiItem {
+      height: 36px;
+      line-height: 36px;
+      padding: 0 22px;
+      font-size: 12px;
+      &:nth-child(odd) {
+        background-color: #E8E8E8;
+      }
+      :global {
+        .serial {
+          display: inline-block;
+          width: 24px;
+          font-size: 16px;
+        }
+      }
+    }
+    :global {
+      .top {
+        display: flex;
+        padding: 20px 10px 20px 20px;
+        .intro {
+          height: 80px;
+          padding: 8px;
+          .title {
+            font-weight: 600;
+          }
+        }
       }
     }
   }

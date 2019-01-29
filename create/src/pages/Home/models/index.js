@@ -2,17 +2,20 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-28 13:24:03 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-28 15:46:28
+ * @Last Modified time: 2019-01-29 15:00:39
  */
 
-import { getHomeBannerData, getHotRecommendList, getNewDiscList } from '@/api/home';
+import { getHomeBannerData, getHotRecommendList, getNewDiscList, getTopList } from '@/api/home';
 
 export default {
   namespace: 'home',
   state: {
     banner: [],
     hotRecommendList: [],
-    newDiscList: []
+    newDiscList: [],
+    hotNewList: {},
+    hotOriginalList: {},
+    hotSoaringList: {}
   },
   effects: {
     *getHomeBannerData(_, { call, put }) {
@@ -35,6 +38,14 @@ export default {
         type: 'updateNewDiscList',
         payload: res.albums
       });
+    },
+    *getTopList({ params }, { call, put }) {
+      const res = yield call(getTopList, params);
+      yield put({
+        type: 'updateHotList',
+        payload: res.playlist,
+        idx: params.idx
+      });
     }
   },
   reducers: {
@@ -46,6 +57,18 @@ export default {
     },
     updateNewDiscList(state, { payload }) {
       return Object.assign({}, state, { newDiscList: payload });
+    },
+    updateHotList(state, { payload, idx }) {
+      switch (idx) {
+        case 1:
+          return Object.assign({}, state, { hotNewList: payload });
+        case 2:
+          return Object.assign({}, state, { hotOriginalList: payload });
+        case 3:
+          return Object.assign({}, state, { hotSoaringList: payload });
+        default:
+          return state;
+      }
     }
   }
 }

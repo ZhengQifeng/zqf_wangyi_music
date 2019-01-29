@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-28 13:23:09 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-28 15:21:32
+ * @Last Modified time: 2019-01-29 14:14:02
  */
 
 import service from './index';
@@ -15,3 +15,6 @@ export const getHotRecommendList = params => service.post('/top/playlist', param
 
 // 获取上架新碟歌单
 export const getNewDiscList = params => service.post('/top/album', params).then(res => res);
+
+// 获取排行榜歌单
+export const getTopList = params => service.post('/top/list', params).then(res => res);

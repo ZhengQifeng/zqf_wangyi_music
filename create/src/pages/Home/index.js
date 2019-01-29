@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-26 14:05:21 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-28 19:35:24
+ * @Last Modified time: 2019-01-29 15:11:05
  */
 
 import React, { Component } from 'react';
@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { SortWrapper } from '../../components/SortWrapper';
 import { MusicCar } from '../../components/MusicCar';
 
-import { Carousel, Icon } from 'antd';
+import { Carousel, Icon, Row, Col } from 'antd';
 import style from './index.less';
 
 const homeCls = classNames({
@@ -25,6 +25,7 @@ class Home extends Component {
     this.getBanner();
     this.getHotRecommendList();
     this.getNewDisc();
+    this.getHotList();
   }
 
   renderCarousel = () => {
@@ -58,33 +59,76 @@ class Home extends Component {
   renderNewDisc = () => {
     const { newDiscList = [] } = this.props;
     return (
-      <>
-        <div>
-          <Icon type="left" />
-        </div>
-        <div>
-          <Carousel dots={false}>
-            <div>
-              <div className={style.sortWrapper}>
-                {newDiscList.slice(0, 5).map((item, index) => (
-                  <MusicCar {...item} imgSrcName='picUrl' key={index} />
-                ))}
+      <div className={style.newDiscBox}>
+        <Row className={style.newDisc}>
+          <Col span={1}>
+            <Icon type="left" onClick={this.handleCarouselLeft} />
+          </Col>
+          <Col span={22}>
+            <Carousel dots={false} ref='discCaro'>
+              <div>
+                <div className={style.sortWrapper}>
+                  {newDiscList.slice(0, 6).map((item, index) => (
+                    <MusicCar {...item} imgSrcName='picUrl' key={index} />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div>
-              <div className={style.sortWrapper}>
-                {newDiscList.slice(5, 10).map((item, index) => (
-                  <MusicCar {...item} imgSrcName='picUrl' key={index} />
-                ))}
+              <div>
+                <div className={style.sortWrapper}>
+                  {newDiscList.slice(6, 12).map((item, index) => (
+                    <MusicCar {...item} imgSrcName='picUrl' key={index} />
+                  ))}
+                </div>
               </div>
-            </div>
-          </Carousel>
-        </div>
-        <div>
-          <Icon type="right" />
-        </div>
-      </>
+            </Carousel>
+          </Col>
+          <Col span={1}>
+            <Icon type="right" onClick={this.handleCarouselRight} />
+          </Col>
+        </Row>
+      </div>
     )
+  }
+
+  renderHotList = () => {
+    const { hotNewList, hotOriginalList, hotSoaringList } = this.props;
+    const hotList = [hotNewList, hotOriginalList, hotSoaringList];
+    return (
+      <div className={style.hotMusic}>
+        {hotList.map((item, index) => (
+          <div className={style.hotMusicLi} key={index}>
+            {this.renderHotListItem(item)}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  renderHotListItem = listItem => (
+    <>
+      <div className='top'>
+        <img className={style.hotMuiscPic} src={listItem.coverImgUrl} />
+        <div className='intro'>
+          <span className='title'>{listItem.name}</span>
+        </div>
+      </div>
+      <ul className='main'>
+        {listItem.tracks && listItem.tracks.slice(0, 10).map((item, index) => (
+          <li className={style.hotMusicLiItem} key={item.id}>
+            <span className='serial' style={{color: index < 3 ? '#c10d0c' : null}}>{index + 1}</span>
+            <span>{item.name}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+
+  handleCarouselLeft = () => {
+    this.refs.discCaro.prev();
+  }
+
+  handleCarouselRight = () => {
+    this.refs.discCaro.next();
   }
 
   getBanner = () => {
@@ -109,9 +153,22 @@ class Home extends Component {
     dispatch({
       type: 'home/getNewDiscList',
       params: {
-        limit: 10
+        limit: 12
       }
     });
+  }
+
+  getHotList = () => {
+    const { dispatch } = this.props;
+    const idxs = [1, 2, 3];
+    for (let idx of idxs) {
+      dispatch({
+        type: 'home/getTopList',
+        params: {
+          idx
+        }
+      });
+    }
   }
 
   render() {
@@ -124,9 +181,10 @@ class Home extends Component {
             {this.renderHotRecommend()}
           </SortWrapper>
           <SortWrapper title='新碟上架'>
-            <div className={style.newDisc}>
-              {this.renderNewDisc()}
-            </div>
+            {this.renderNewDisc()}
+          </SortWrapper>
+          <SortWrapper title='榜单'>
+            {this.renderHotList()}
           </SortWrapper>
         </div>
       </ >
