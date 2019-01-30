@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-26 14:05:21 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-29 15:11:05
+ * @Last Modified time: 2019-01-30 14:52:18
  */
 
 import React, { Component } from 'react';
@@ -12,13 +12,13 @@ import classNames from 'classnames';
 import { SortWrapper } from '../../components/SortWrapper';
 import { MusicCar } from '../../components/MusicCar';
 
-import { Carousel, Icon, Row, Col } from 'antd';
+import { Spin, Carousel, Icon, Row, Col } from 'antd';
 import style from './index.less';
 
-const homeCls = classNames({
-  [style.normal]: true,
-  mainContent: true
-});
+const spinCls = classNames({
+  mainContent: true,
+  [style.spin]: true
+})
 
 class Home extends Component {
   componentWillMount() {
@@ -109,14 +109,25 @@ class Home extends Component {
       <div className='top'>
         <img className={style.hotMuiscPic} src={listItem.coverImgUrl} />
         <div className='intro'>
-          <span className='title'>{listItem.name}</span>
+          <div className='title'>{listItem.name}</div>
+          <div className='opera'>
+            <Icon type="play-circle" />
+            <Icon type="folder-add" />
+          </div>
         </div>
       </div>
       <ul className='main'>
         {listItem.tracks && listItem.tracks.slice(0, 10).map((item, index) => (
           <li className={style.hotMusicLiItem} key={item.id}>
-            <span className='serial' style={{color: index < 3 ? '#c10d0c' : null}}>{index + 1}</span>
-            <span>{item.name}</span>
+            <div>
+              <span className='serial' style={{color: index < 3 ? '#c10d0c' : null}}>{index + 1}</span>
+              <span>{item.name}</span>
+            </div>
+            <div className='opera'>
+              <Icon type="play-circle" />
+              <Icon type="plus" />
+              <Icon type="folder-add" />
+            </div>
           </li>
         ))}
       </ul>
@@ -172,26 +183,35 @@ class Home extends Component {
   }
 
   render() {
-    const { hotRecommendList, newDiscList } = this.props;
+    const { homeLoading } = this.props;
     return (
       <>
-        {this.renderCarousel()}
-        <div className={homeCls}>
-          <SortWrapper title='热门推荐'>
-            {this.renderHotRecommend()}
-          </SortWrapper>
-          <SortWrapper title='新碟上架'>
-            {this.renderNewDisc()}
-          </SortWrapper>
-          <SortWrapper title='榜单'>
-            {this.renderHotList()}
-          </SortWrapper>
-        </div>
+        {homeLoading ? (
+          <div className={spinCls} style={{paddingTop: 120}}>
+            <Spin />
+          </div>
+        ) : (
+          <>
+            {this.renderCarousel()}
+            <div className='mainContent'>
+              <SortWrapper title='热门推荐'>
+                {this.renderHotRecommend()}
+              </SortWrapper>
+              <SortWrapper title='新碟上架'>
+                {this.renderNewDisc()}
+              </SortWrapper>
+              <SortWrapper title='榜单'>
+                {this.renderHotList()}
+              </SortWrapper>
+            </div>
+          </>
+        )}
       </ >
     )
   }
 }
 
-export default connect(({ home }) => ({
-  ...home
+export default connect(({ home, loading }) => ({
+  ...home,
+  homeLoading: loading.models.home
 }))(Home);

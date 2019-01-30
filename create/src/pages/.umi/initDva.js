@@ -16,3 +16,4 @@ app.use(createLoading());
 
 app.model({ namespace: 'nav', ...(require('D:/projectMy/zqf_wangyi_music/create/src/models/nav.js').default) });
 app.model({ namespace: 'index', ...(require('D:/projectMy/zqf_wangyi_music/create/src/pages/Home/models/index.js').default) });
+app.model({ namespace: 'toplist', ...(require('D:/projectMy/zqf_wangyi_music/create/src/pages/Home/models/toplist.js').default) });

@@ -22,6 +22,20 @@ let routes = [
         "component": require('../../layouts/HomeLayout').default,
         "routes": [
           {
+            "path": "/toplist/:id",
+            "component": require('../Home/Toplist').default,
+            "exact": true,
+            "_title": "create",
+            "_title_default": "create"
+          },
+          {
+            "path": "/toplist",
+            "component": require('../Home/Toplist').default,
+            "exact": true,
+            "_title": "create",
+            "_title_default": "create"
+          },
+          {
             "path": "/",
             "component": require('../Home').default,
             "exact": true,

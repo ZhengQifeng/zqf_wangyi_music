@@ -35,6 +35,14 @@ export default {
           component: "../layouts/HomeLayout",
           routes: [
             {
+              path: "/toplist/:id",
+              component: "./Home/Toplist"
+            },
+            {
+              path: "/toplist",
+              component: "./Home/Toplist"
+            },
+            {
               path: "/",
               component: "./Home"
             }

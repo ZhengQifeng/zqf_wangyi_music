@@ -1,5 +1,5 @@
 .carousel {
-  width: 980px;
+  width: 982px;
   margin: 0 auto;
   :global {
     .slick-slide {
@@ -76,18 +76,37 @@
       height: 80px;
     }
     .hotMusicLiItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       height: 36px;
       line-height: 36px;
       padding: 0 22px;
       font-size: 12px;
+      cursor: pointer;
       &:nth-child(odd) {
         background-color: #E8E8E8;
+      }
+      &:hover {
+        :global {
+          .opera {
+            display: block;
+          }
+        }
       }
       :global {
         .serial {
           display: inline-block;
           width: 24px;
           font-size: 16px;
+        }
+        .opera {
+          display: none;
+          color: #999;
+          font-size: 18px;
+          *:not(:last-child) {
+            margin-right: 3px;
+          }
         }
       }
     }
@@ -101,12 +120,21 @@
           .title {
             font-weight: 600;
           }
+          .opera {
+            font-size: 24px;
+            color: #B6B6B6;
+            *:not(:last-child) {
+              margin-right: 6px;
+              cursor: pointer;
+            }
+          }
         }
       }
     }
   }
 }
 
-.normal {
-  background: #79F2F2;
+.spin {
+  display: flex;
+  justify-content: center;
 }

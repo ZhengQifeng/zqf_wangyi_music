@@ -2,7 +2,7 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-28 13:24:03 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-29 15:00:39
+ * @Last Modified time: 2019-01-30 14:33:23
  */
 
 import { getHomeBannerData, getHotRecommendList, getNewDiscList, getTopList } from '@/api/home';
