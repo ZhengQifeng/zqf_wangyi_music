@@ -22,6 +22,10 @@ export default {
       'changeOrigin': true
     }
   },
+  define: {
+    "process.env.TEST": 1,
+    "USE_COMMA": 2,
+  },
   routes: [
     {
       path: "/",

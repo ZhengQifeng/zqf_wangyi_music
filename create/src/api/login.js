@@ -2,9 +2,9 @@
  * @Author: zhengqifeng 
  * @Date: 2019-01-28 13:23:28 
  * @Last Modified by: zhengqifeng
- * @Last Modified time: 2019-01-28 13:28:51
+ * @Last Modified time: 2019-01-31 10:17:15
  */
 
 import service from './index';
 
-export const doLogin = params => service.post('/login/cellphone', params).then(res => res);
+export const doLogin = params => service.get('/login/cellphone', { params }).then(res => res);
